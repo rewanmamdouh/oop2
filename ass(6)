@@ -1,0 +1,63 @@
+abstract class Shape {
+  String color;
+
+  Shape(this.color);
+
+  double getArea();
+
+  @override
+  String toString();
+}
+
+class Rectangle extends Shape {
+  int length;
+  int width;
+
+  Rectangle(this.length, this.width, String color) : super(color);
+
+  @override
+  double getArea() {
+    return (length * width).toDouble();
+  }
+
+  @override
+  String toString() {
+    return 'Rectangle: length = $length, width = $width, color = $color, area = ${getArea()}';
+  }
+}
+
+class Triangle extends Shape {
+  int base;
+  int height;
+
+  Triangle(this.base, this.height, String color) : super(color);
+
+  @override
+  double getArea() {
+    return 0.5 * base * height;
+  }
+
+  @override
+  String toString() {
+    return 'Triangle: base = $base, height = $height, color = $color, area = ${getArea()}';
+  }
+}
+
+void main() {
+  List<Shape> shapes = [
+    Rectangle(5, 3, 'red'),
+    Triangle(4, 6, 'blue'),
+    Rectangle(10, 2, 'green'),
+    Triangle(8, 5, 'yellow'),
+  ];
+
+  for (Shape shape in shapes) {
+    print(shape);
+  }
+
+  double total = 0;
+  for (Shape shape in shapes) {
+    total += shape.getArea();
+  }
+  print('Total area = $total');
+}
